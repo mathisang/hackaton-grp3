@@ -29,8 +29,6 @@ const SideBar = ({anchor, items, open, variant, onClose, ...restOfProps}) => {
     const isAuthenticated = useIsAuthenticated(); // Variant 2
     const onLogout = useEventLogout();
 
-    console.log(state?.currentUser)
-    console.log(state)
     const handleAfterLinkClick = useCallback(
         (event) => {
             if (variant === 'temporary' && typeof onClose === 'function') {
