@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import AuthRoutes from '../views/Auth';
 import {NotFoundView, UserView} from '../views';
 import LoginEmailView from '../views/Auth/Login/Email';
+import ListCourses from '../views/Course/ListCourses';
 
 /**
  * List of routes available only for anonymous users
@@ -12,6 +13,7 @@ const PublicRoutes = () => {
     <Routes>
       <Route path="/" element={<LoginEmailView />} />
       <Route path="auth/*" element={<AuthRoutes />} />
+      <Route path="/courses" element={<ListCourses />} />
       <Route path="*" element={<NotFoundView />} />
         <Route path="/user/*" element={<UserView />} />
     </Routes>
