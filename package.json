@@ -26,6 +26,7 @@
     "axios": "latest",
     "clsx": "latest",
     "date-fns": "latest",
+    "lodash.debounce": "^4.0.8",
     "loglevel": "latest",
     "notistack": "latest",
     "react": "latest",
