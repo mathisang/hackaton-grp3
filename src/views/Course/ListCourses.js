@@ -1,11 +1,9 @@
 import { Box, Typography, Stack, Select, MenuItem, FormControl } from "@mui/material";
 import CardCourseList from "../../components/CardCourseList";
 import TitleSection from "../../components/TitleSection/TitleSection";
-import SearchBar from "../../components/SearchBar";
-import DateHeader from "../../components/DateHeader";
+import { Header } from "../../components/Header";
 import { useRef, useEffect, useState } from 'react';
 import api from "../../api";
-
 
 const courses = [
     { title: 'Violon' },
@@ -95,10 +93,14 @@ const ListCourses = () => {
             justifyContent: 'center',
             padding: '32px'
         }}>
-            <Stack direction='row' justifyContent={'space-between'} alignItems={'center'} spacing={8} sx={{paddingBottom: '32px'}}>
-                <SearchBar />
-                <DateHeader />
-            </Stack>
+            <Header />
+            <Box sx={{ display: 'flex', flexDirection: 'column', marginBottom: '30px' }}>
+                <TitleSection title="Liste des cours"/>
+                {/* <Typography sx={{ fontWeight: 'regular', fontSize: 16 }}>
+                    Thème: Musique
+                </Typography> */}
+                {/* <SearchCourse /> */}
+            </Box>
 
             <Box sx={{paddingLeft: '50px'}}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', marginBottom: '30px' }}>
