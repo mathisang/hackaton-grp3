@@ -69,7 +69,11 @@ const ListCourses = () => {
 
 
     return (
-        <PublicLayout>
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center'
+        }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', marginBottom: '30px' }}>
                 <TitleSection title="Liste des cours"/>
                 {/* <Typography sx={{ fontWeight: 'regular', fontSize: 16 }}>
@@ -78,16 +82,16 @@ const ListCourses = () => {
                 {/* <SearchCourse /> */}
             </Box>
 
-            <div style={{maxHeight: '90vh', overflow: 'scroll', paddingBottom: '200px'}}>
+            <div style={{maxHeight: '90vh', overflow: 'auto', paddingBottom: '200px'}}>
                 <Box sx={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
                     {
                         listOfCourses.map((course, index) => {
                             return <CardCourseList key={index} title={course.title} description={course.description} autor={course.auteur}/>
                         })
-                    } 
+                    }
                 </Box>
             </div>
-        </PublicLayout>
+        </Box>
     )
 }
 
