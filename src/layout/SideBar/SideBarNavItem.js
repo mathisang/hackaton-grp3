@@ -20,6 +20,18 @@ const SideBarNavItem = ({ openInNewTab, icon, path, selected: propSelected = fal
       href="" // Hard reset for .href property, otherwise links are always opened in new tab :(
       openInNewTab={openInNewTab}
       onClick={onClick}
+      sx={{
+          padding: 3,
+          borderRadius: '30px 0 0 30px',
+          '&.Mui-selected': {
+            color: 'primary.main',
+            fontWeight: 'bold',
+            background: '#F3F3F3',
+            '& .MuiListItemIcon-root': {
+                color: 'primary.main',
+            },
+            }
+      }}
     >
       <ListItemIcon>{icon && <AppIcon icon={icon} />}</ListItemIcon>
       <ListItemText primary={title} secondary={subtitle} />
