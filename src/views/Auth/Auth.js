@@ -11,13 +11,7 @@ const AuthView = () => {
       <Typography variant="h2">Auth View</Typography>
       <ul>
         <li>
-          <AppLink to="/auth/signup">Signup</AppLink>
-        </li>
-        <li>
           <AppLink to="/auth/login">Login</AppLink>
-        </li>
-        <li>
-          <AppLink to="/auth/recovery">Recovery</AppLink>
         </li>
       </ul>
     </Grid>
