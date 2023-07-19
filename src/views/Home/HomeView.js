@@ -10,8 +10,8 @@ import { SearchBar } from '../../components/SearchBar';
  */
 const HomeView = () => {
   return (
-    <Stack direction='column' spacing={6} sx={{width: '100%', overflow: 'hidden', padding: '32px 0 32px 32px'}}>
-      <Stack direction='row' justifyContent={'space-between'} alignItems={'center'} spacing={8} sx={{paddingRight: '32px'}}>
+    <Stack direction='column' spacing={6} sx={{width: '100%', overflow: 'hidden', padding: '32px'}}>
+      <Stack direction='row' justifyContent={'space-between'} alignItems={'center'} spacing={8} >
         <SearchBar />
         <DateHeader />
       </Stack>
