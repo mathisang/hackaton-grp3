@@ -1,33 +1,48 @@
-import { Autocomplete, Box, Typography, TextField } from "@mui/material";
-import PublicLayout from "../../layout/PublicLayout";
+import { Box, Typography, Stack, Select, MenuItem, FormControl } from "@mui/material";
 import CardCourseList from "../../components/CardCourseList";
 import TitleSection from "../../components/TitleSection/TitleSection";
+import SearchBar from "../../components/SearchBar";
+import DateHeader from "../../components/DateHeader";
+import { useRef, useEffect, useState } from 'react';
+import api from "../../api";
 
 
 const courses = [
     { title: 'Violon' },
     { title: 'Flutte' },
     { title: 'Guitare' },
-    { title: 'piano' }
+    { title: 'Piano' }
 ];
 
 const SearchCourse = ({ }) => {
     return (
-        <Box sx={{width: 300, display: 'flex', flexDirection: 'column', boxShadow: '3px 4px 6px 0px #00000012'}}>
-            <Autocomplete
-            freeSolo
-            disableClearable
-            renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Search input"
-                  options={courses.map((option) => option.title)}
-                  InputProps={{
-                    ...params.InputProps,
-                    type: 'search',
-                  }}
-                />
-              )} />
+        <Box sx={{
+            width: 300, 
+            display: 'flex', 
+            flexDirection: 'row', 
+            boxShadow: '3px 4px 6px 0px #00000012',
+            backgroundColor: '#fff',
+            borderRadius: '20px',
+            padding: '15px 20px',
+            alignItems: 'center',
+            gap: '20px'
+            }}
+        >
+            <Typography>Trier par :</Typography>
+            <FormControl sx={{width: '60%'}} size="small">
+                <Select
+                    label="Age"
+                    >
+                    <MenuItem value="">
+                        <em>Aucun</em>
+                    </MenuItem>
+                    {
+                        courses.map((course, index) => {
+                            return <MenuItem key={index} value={course.title}>{course.title}</MenuItem>
+                        })
+                    }
+                </Select>
+            </FormControl>
         </Box>
     )
 };
@@ -67,30 +82,41 @@ const ListCourses = () => {
         },
     ];
 
+    const [categories, setCategories] = useState([]);
+    useEffect(() => {
+        api.axios.get('/categories').then((response) => {
+            setCategories(response)});
+    }, []);
 
     return (
         <Box sx={{
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            padding: '32px'
         }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', marginBottom: '30px' }}>
-                <TitleSection title="Liste des cours"/>
-                {/* <Typography sx={{ fontWeight: 'regular', fontSize: 16 }}>
-                    Thème: Musique
-                </Typography> */}
-                {/* <SearchCourse /> */}
-            </Box>
+            <Stack direction='row' justifyContent={'space-between'} alignItems={'center'} spacing={8} sx={{paddingBottom: '32px'}}>
+                <SearchBar />
+                <DateHeader />
+            </Stack>
 
-            <div style={{maxHeight: '90vh', overflow: 'auto', paddingBottom: '200px'}}>
-                <Box sx={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
-                    {
-                        listOfCourses.map((course, index) => {
-                            return <CardCourseList key={index} title={course.title} description={course.description} autor={course.auteur}/>
-                        })
-                    }
+            <Box sx={{paddingLeft: '50px'}}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', marginBottom: '30px' }}>
+                    <TitleSection title="Liste des cours"/>
+                    <SearchCourse />
                 </Box>
-            </div>
+
+                <div style={{paddingBottom: '200px'}}
+                >
+                    <Box sx={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
+                        {
+                            listOfCourses.map((course, index) => {
+                                return <CardCourseList key={index} title={course.title} description={course.description} autor={course.auteur}/>
+                            })
+                        }
+                    </Box>
+                </div>
+            </Box>
         </Box>
     )
 }
