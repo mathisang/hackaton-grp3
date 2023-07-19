@@ -1,5 +1,5 @@
 const COLOR_PRIMARY = {
-  main: '#81c784', // Green 300
+  main: '#FF3366', // Green 300
   contrastText: '#000000',
 };
 
