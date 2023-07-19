@@ -91,7 +91,7 @@ const PublicLayout = ({children}) => {
                 component="main"
                 sx={{
                     flexGrow: 1, // Takes all possible space
-                    paddingLeft: sideBarVisible ? 50 : 0,
+                    paddingLeft: sideBarVisible ? 20 : 0,
                     paddingTop: 6
                 }}
             >
