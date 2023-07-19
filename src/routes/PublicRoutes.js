@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import AuthRoutes from '../views/Auth';
-import { NotFoundView } from '../views';
+import {NotFoundView, UserView} from '../views';
 import LoginEmailView from '../views/Auth/Login/Email';
 
 /**
@@ -13,6 +13,7 @@ const PublicRoutes = () => {
       <Route path="/" element={<LoginEmailView />} />
       <Route path="auth/*" element={<AuthRoutes />} />
       <Route path="*" element={<NotFoundView />} />
+        <Route path="/user/*" element={<UserView />} />
     </Routes>
   );
 };

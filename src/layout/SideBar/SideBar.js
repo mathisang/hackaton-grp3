@@ -2,10 +2,9 @@ import {useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {Box, Drawer, Stack} from '@mui/material';
 import {AppIconButton} from '../../components';
-import {useAppStore} from '../../store/AppStore';
-import {useEventLogout, useEventSwitchDarkMode, useIsAuthenticated, useOnMobile} from '../../hooks';
+import {useEventLogout, useIsAuthenticated} from '../../hooks';
 import SideBarNavList from './SideBarNavList';
-import {SIDEBAR_WIDTH, TOPBAR_DESKTOP_HEIGHT} from '../config';
+import {SIDEBAR_WIDTH} from '../config';
 import {PROP_TYPE_LINK_ITEM} from '../utils';
 import user from '../../assets/user.png';
 import headerImage from '../../assets/header_navbar.svg';
@@ -25,9 +24,6 @@ const SideBar = ({anchor, items, open, variant, onClose, ...restOfProps}) => {
     // const [state] = useAppStore();
     // const isAuthenticated = state.isAuthenticated; // Variant 1
     const isAuthenticated = useIsAuthenticated(); // Variant 2
-    const onMobile = useOnMobile();
-
-    const onSwitchDarkMode = useEventSwitchDarkMode();
     const onLogout = useEventLogout();
 
     const handleAfterLinkClick = useCallback(
