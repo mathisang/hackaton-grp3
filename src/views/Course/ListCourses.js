@@ -22,19 +22,19 @@ const SearchCourse = ({ setCategory }) => {
 
     return (
         <Box sx={{
-            width: 300,
+            width: 500,
             display: 'flex',
             flexDirection: 'row',
             boxShadow: '3px 4px 6px 0px #00000012',
             backgroundColor: '#fff',
             borderRadius: '20px',
-            padding: '15px 20px',
+            padding: '10px 20px',
             alignItems: 'center',
             gap: '20px'
             }}
         >
             <Typography>Trier par :</Typography>
-            <FormControl sx={{width: '60%'}} size="small">
+            <FormControl sx={{width: '80%'}} size="small">
                 <Select
                     onChange={(event) => {handleChange(event)}}
                     value={value}
@@ -94,7 +94,7 @@ const ListCourses = () => {
         }}>
             <Header />
 
-            <Box sx={{paddingLeft: '50px'}}>
+            <Box sx={{paddingLeft: '50px', marginTop: '48px'}}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', marginBottom: '30px' }}>
                     <TitleSection title="Liste des cours"/>
                     <SearchCourse setCategory={(valeur) => setCategory(valeur)}/>
