@@ -19,20 +19,20 @@ const TITLE_PRIVATE = '_TITLE_ app'; // Title for pages after authentication
  */
 const SIDEBAR_ITEMS = [
     {
-        title: 'Welcome',
-        path: '/welcome',
+        title: 'Accueil',
+        path: '/',
         icon: 'home',
     },
     {
-        title: 'Tools',
-        path: '/tools',
-        icon: 'tools',
+        title: 'Cours',
+        path: '/courses',
+        icon: 'course'
     },
     {
-        title: 'About',
-        path: '/about',
-        icon: 'info',
-    },
+        title: 'Demandes',
+        path: '/applications',
+        icon: 'requestQuote',
+    }
 ];
 
 /**
@@ -71,6 +71,7 @@ const PrivateLayout = ({children}) => {
         <Stack
             direction="column"
             sx={{
+                background: '#F3F3F3',
                 minHeight: '100vh', // Full screen height
                 paddingTop: onMobile ? TOPBAR_MOBILE_HEIGHT : TOPBAR_DESKTOP_HEIGHT,
                 paddingLeft: sidebarOpen && SIDEBAR_DESKTOP_ANCHOR.includes('left') ? SIDEBAR_WIDTH : 0,
@@ -91,9 +92,7 @@ const PrivateLayout = ({children}) => {
                 component="main"
                 sx={{
                     flexGrow: 1, // Takes all possible space
-                    paddingLeft: 1,
-                    paddingRight: 1,
-                    paddingTop: 1,
+                    padding: 2,
                 }}
             >
                 <ErrorBoundary name="Content">{children}</ErrorBoundary>

@@ -74,7 +74,7 @@ const PublicLayout = ({children}) => {
         <Box
             sx={{
                 display: 'flex',
-                background: '#D9D9D9',
+                background: '#F3F3F3',
                 minHeight: '100vh', // Full screen height
             }}
         >

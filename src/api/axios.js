@@ -7,7 +7,7 @@ import { localStorageGet } from '../utils/localStorage';
  */
 const axiosInstance = axios.create({
   // Use Local storage to override API base path
-  baseURL: `${localStorageGet('REACT_APP_API_URL') || process.env.REACT_APP_API_URL}/`,
+  baseURL: `${process.env.REACT_APP_API_URL}/`,
 });
 
 /**
@@ -16,6 +16,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.response.use(
   (res) => res,
   (err) => {
+      console.log(api.url)
     if (Number(err?.response?.status) === 401) {
       // Token expired, or hacked
       api?.auth?.logout(); // Logout user and reload Application

@@ -47,7 +47,7 @@ const LoginEmailView = () => {
 
       const result = await api?.auth?.login(values);
       if (!result) {
-        setError('Please check email and password');
+        setError('Identifiant ou mot de passe incorrects');
         return; // Unsuccessful login
       }
 
@@ -62,7 +62,7 @@ const LoginEmailView = () => {
   return (
     <AppForm onSubmit={handleFormSubmit}>
       <Card>
-        <CardHeader title="Login with Email" />
+        <CardHeader title="Connexion" />
         <CardContent>
           <TextField
             required
@@ -77,7 +77,7 @@ const LoginEmailView = () => {
           <TextField
             required
             type={showPassword ? 'text' : 'password'}
-            label="Password"
+            label="Mot de passe"
             name="password"
             value={values.password}
             error={fieldHasError('password')}
