@@ -1,55 +1,40 @@
-import { Grid } from '@mui/material';
-import { AppLink, AppIcon } from '../../components';
-import FinalMessage from '../../components/FinalMessage';
-import ButtonsSection from '../components/Buttons';
-import TagsSection from '../components/Tags';
-import TypographySection from '../components/Typography';
-import IconButtonsSection from '../components/IconButtons';
-import AlertsSection from '../components/Alerts';
+import { Stack, Box } from '@mui/material';
+import { SubjectCard } from '../../components/SubjectCard';
+import { CardCourse } from '../../components/CardCourse';
+import { TitleSection } from '../../components/TitleSection';
+import { DateHeader } from '../../components/DateHeader';
+import { SearchBar } from '../../components/SearchBar';
 
 /**
- * Renders Welcome page/view
- * Url: /welcome and /
+ * Renders Home page/view
  */
 const HomeView = () => {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <FinalMessage title="Welcome to _TITLE_">
-          <p>
-            This <AppLink href="https://react.dev/">React</AppLink> application is built using{' '}
-            <AppLink href="https://mui.com/">Material UI</AppLink> components.
-          </p>
-          <p>
-            The project is <AppLink href="https://github.com/karpolan/react-mui-pro-starter">Open Source</AppLink> and
-            contains lots of useful components and utilities.
-          </p>
-          <p>
-            Everyone can use the source code as a{' '}
-            <AppLink href="https://github.com/karpolan/react-mui-pro-starter/blob/main/README.md">
-              starter for new React project
-            </AppLink>
-            . Any{' '}
-            <AppLink href="https://github.com/karpolan/react-mui-pro-starter/issues">comments and suggestions</AppLink>{' '}
-            are welcome <AppIcon name="smile" />
-          </p>
-        </FinalMessage>
-      </Grid>
+    <Stack direction='column' spacing={6} sx={{width: '100%', overflow: 'hidden', padding: '32px 0 32px 32px'}}>
+      <Stack direction='row' justifyContent={'space-between'} alignItems={'center'} spacing={8} sx={{paddingRight: '32px'}}>
+        <SearchBar />
+        <DateHeader />
+      </Stack>
+      <Box>
+        <TitleSection title={'Sujets'} arrow={true} />
+        <Stack direction="row" spacing={4} sx={{overflow: 'auto'}}>
+          <SubjectCard />
+          <SubjectCard />
+          <SubjectCard />
+          <SubjectCard />
+          <SubjectCard />
+        </Stack>
+      </Box>
 
-      <Grid item xs={12} sm={6}>
-        <TypographySection />
-      </Grid>
-
-      <Grid item xs={12} sm={6}>
-        <ButtonsSection />
-        <br />
-        <IconButtonsSection />
-        <br />
-        <TagsSection />
-        <br />
-        <AlertsSection />
-      </Grid>
-    </Grid>
+      <Box>
+        <TitleSection title={'Top cours'} />
+        <Stack direction="column" spacing={2} sx={{paddingRight: '32px'}}>
+          <CardCourse />
+          <CardCourse />
+          <CardCourse />
+        </Stack>  
+      </Box>
+    </Stack>
   );
 };
 

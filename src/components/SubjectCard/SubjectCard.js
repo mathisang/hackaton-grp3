@@ -9,7 +9,7 @@ import { APP_SECTION_VARIANT } from '../config';
  */
 const SubjectCard = ({ variant = APP_SECTION_VARIANT }) => {
   return (
-    <Card sx={{ maxWidth: 400 }}>
+    <Card sx={{ maxWidth: 500, minWidth: '30%' }}>
       <CardMedia sx={{ height: 150 }} image="/assets/images/subjects/subject1.jpg" title="Subject" />
       <CardContent sx={{ paddingBottom: 0, position: 'relative' }}>
         <Box
