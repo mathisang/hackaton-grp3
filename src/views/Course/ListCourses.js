@@ -2,6 +2,7 @@ import { Autocomplete, Box, Typography, TextField } from "@mui/material";
 import PublicLayout from "../../layout/PublicLayout";
 import CardCourseList from "../../components/CardCourseList";
 import TitleSection from "../../components/TitleSection/TitleSection";
+import { Header } from "../../components/Header";
 
 
 const courses = [
@@ -74,6 +75,7 @@ const ListCourses = () => {
             flexDirection: 'column',
             justifyContent: 'center'
         }}>
+            <Header />
             <Box sx={{ display: 'flex', flexDirection: 'column', marginBottom: '30px' }}>
                 <TitleSection title="Liste des cours"/>
                 {/* <Typography sx={{ fontWeight: 'regular', fontSize: 16 }}>

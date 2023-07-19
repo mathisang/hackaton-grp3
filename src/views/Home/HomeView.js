@@ -2,8 +2,7 @@ import { Stack, Box } from '@mui/material';
 import { SubjectCard } from '../../components/SubjectCard';
 import { CardCourse } from '../../components/CardCourse';
 import { TitleSection } from '../../components/TitleSection';
-import { DateHeader } from '../../components/DateHeader';
-import { SearchBar } from '../../components/SearchBar';
+import { Header } from '../../components/Header';
 
 /**
  * Renders Home page/view
@@ -11,10 +10,7 @@ import { SearchBar } from '../../components/SearchBar';
 const HomeView = () => {
   return (
     <Stack direction='column' spacing={6} sx={{width: '100%', overflow: 'hidden', padding: '32px 0 32px 32px'}}>
-      <Stack direction='row' justifyContent={'space-between'} alignItems={'center'} spacing={8} sx={{paddingRight: '32px'}}>
-        <SearchBar />
-        <DateHeader />
-      </Stack>
+      <Header />
       <Box>
         <TitleSection title={'Sujets'} arrow={true} />
         <Stack direction="row" spacing={4} sx={{overflow: 'auto'}}>
