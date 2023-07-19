@@ -10,6 +10,23 @@ const axiosInstance = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}/`,
 });
 
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+
+    if (config.url.includes('auth/local')) {
+      return config;
+    }
+
+    const token = localStorageGet('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (err) => Promise.reject(err)
+);
+
 /**
  * Interceptor to automatically logout current user if any API call returns 401
  */
