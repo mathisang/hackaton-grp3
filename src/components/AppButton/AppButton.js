@@ -9,6 +9,7 @@ const MUI_BUTTON_COLORS = ['inherit', 'primary', 'secondary', 'success', 'error'
 
 const DEFAULT_SX_VALUES = {
   margin: 1, // By default the AppButton has theme.spacing(1) margin on all sides
+  borderRadius: '11px' , // By default the AppButton has theme.shape.borderRadius = 4
 };
 
 /**

@@ -1,10 +1,10 @@
 const COLOR_PRIMARY = {
-  main: '#81c784', // Green 300
+  main: '#FF3366', // Green 300
   contrastText: '#000000',
 };
 
 const COLOR_SECONDARY = {
-  main: '#ffb74d', // Orange 300
+  main: '#FF3366', // Orange 300
   contrastText: '#000',
 };
 
@@ -19,7 +19,7 @@ const COLOR_SUCCESS = {
 };
 
 const COLOR_WARNING = {
-  main: '#f9a825', // Yellow 800
+  main: '#FFB129', // Yellow 800
   // contrastText: '#000000',
   contrastText: '#FFFFFF',
 };

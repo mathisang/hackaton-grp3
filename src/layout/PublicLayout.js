@@ -1,11 +1,8 @@
-import { useCallback, useState } from 'react';
-import { Stack } from '@mui/material/';
-import { useAppStore } from '../store/AppStore';
-import { ErrorBoundary, AppIconButton } from '../components';
-import { useOnMobile } from '../hooks/layout';
-import { BOTTOMBAR_DESKTOP_VISIBLE, TOPBAR_DESKTOP_HEIGHT, TOPBAR_MOBILE_HEIGHT } from './config';
-import { useEventSwitchDarkMode } from '../hooks/event';
-import TopBar from './TopBar';
+import {useCallback, useState} from 'react';
+import {Stack} from '@mui/material/';
+import {ErrorBoundary} from '../components';
+import {useOnMobile} from '../hooks/layout';
+import {BOTTOMBAR_DESKTOP_VISIBLE} from './config';
 import SideBar from './SideBar';
 import BottomBar from './BottomBar';
 import {Box} from "@mui/material";
@@ -17,98 +14,93 @@ const TITLE_PUBLIC = '_TITLE_ app'; // Title for pages without/before authentica
  * SideBar navigation items with links
  */
 const SIDEBAR_ITEMS = [
-  {
-    title: 'Accueil',
-    path: '/',
-    icon: 'home',
-  },
-  {
-    title: 'Connexion',
-    path: '/auth/login',
-    icon: 'login',
-  },
+    {
+        title: 'Accueil',
+        path: '/',
+        icon: 'home',
+    },
+    {
+        title: 'Connexion',
+        path: '/auth/login',
+        icon: 'login',
+    },
 ];
 
 /**
  * BottomBar navigation items with links
  */
 const BOTTOMBAR_ITEMS = [
-  {
-    title: 'Connexion',
-    path: '/auth/login',
-    icon: 'login',
-  },
+    {
+        title: 'Connexion',
+        path: '/auth/login',
+        icon: 'login',
+    },
 ];
 
 /**
  * Renders "Public Layout" composition
  * @component PublicLayout
  */
-const PublicLayout = ({ children }) => {
-  const onMobile = useOnMobile();
-  const onSwitchDarkMode = useEventSwitchDarkMode();
-  const [sideBarVisible, setSideBarVisible] = useState(true);
-  const [state] = useAppStore();
-  const bottomBarVisible = onMobile || BOTTOMBAR_DESKTOP_VISIBLE;
+const PublicLayout = ({children}) => {
+    const onMobile = useOnMobile();
+    const [sideBarVisible, setSideBarVisible] = useState(true);
+    const bottomBarVisible = onMobile || BOTTOMBAR_DESKTOP_VISIBLE;
 
-  // Variant 1 - Sidebar is static on desktop and is a drawer on mobile
-  // const sidebarOpen = onMobile ? sideBarVisible : true;
-  // const sidebarVariant = onMobile ? 'temporary' : 'persistent';
+    // Variant 1 - Sidebar is static on desktop and is a drawer on mobile
+    // const sidebarOpen = onMobile ? sideBarVisible : true;
+    // const sidebarVariant = onMobile ? 'temporary' : 'persistent';
 
-  // Variant 2 - Sidebar is drawer on mobile and desktop
-  const sidebarOpen = sideBarVisible;
-  const sidebarVariant = 'persistent';
+    // Variant 2 - Sidebar is drawer on mobile and desktop
+    const sidebarOpen = sideBarVisible;
+    const sidebarVariant = 'persistent';
 
-  const title = TITLE_PUBLIC;
-  document.title = title; // Also Update Tab Title
+    const title = TITLE_PUBLIC;
+    document.title = title; // Also Update Tab Title
 
-  const onSideBarOpen = useCallback(() => {
-    if (!sideBarVisible) setSideBarVisible(true); // Don't re-render Layout when SideBar is already open
-  }, [sideBarVisible]);
+    const onSideBarClose = useCallback(() => {
+        if (sideBarVisible) setSideBarVisible(false); // Don't re-render Layout when SideBar is already closed
+    }, [sideBarVisible]);
 
-  const onSideBarClose = useCallback(() => {
-    if (sideBarVisible) setSideBarVisible(false); // Don't re-render Layout when SideBar is already closed
-  }, [sideBarVisible]);
+    // console.log(
+    //   'Render using PublicLayout, onMobile:',
+    //   onMobile,
+    //   'sidebarOpen:',
+    //   sidebarOpen,
+    //   'sidebarVariant:',
+    //   sidebarVariant
+    // );
 
-  // console.log(
-  //   'Render using PublicLayout, onMobile:',
-  //   onMobile,
-  //   'sidebarOpen:',
-  //   sidebarOpen,
-  //   'sidebarVariant:',
-  //   sidebarVariant
-  // );
+    return (
+        <Box
+            sx={{
+                display: 'flex',
+                background: '#D9D9D9',
+                minHeight: '100vh', // Full screen height
+            }}
+        >
+            <SideBar
+                anchor="left"
+                edge="start"
+                open={sidebarOpen}
+                variant={sidebarVariant}
+                items={SIDEBAR_ITEMS}
+                onClose={onSideBarClose}
+            />
 
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        background: '#D9D9D9',
-        minHeight: '100vh', // Full screen height
-      }}
-    >
-      <SideBar
-          anchor="left"
-          edge="start"
-          open={sidebarOpen}
-          variant={sidebarVariant}
-          items={SIDEBAR_ITEMS}
-          onClose={onSideBarClose}
-      />
+            <Stack
+                component="main"
+                sx={{
+                    flexGrow: 1, // Takes all possible space
+                    paddingLeft: sideBarVisible ? 50 : 0,
+                    paddingTop: 6
+                }}
+            >
+                <ErrorBoundary name="Content">{children}</ErrorBoundary>
+            </Stack>
 
-      <Stack
-        component="main"
-        sx={{
-          flexGrow: 1, // Takes all possible space
-          paddingLeft: sideBarVisible ? 30 : 0,
-        }}
-      >
-        <ErrorBoundary name="Content">{children}</ErrorBoundary>
-      </Stack>
-
-      <Stack component="footer">{bottomBarVisible && <BottomBar items={BOTTOMBAR_ITEMS} />}</Stack>
-    </Box>
-  );
+            <Stack component="footer">{bottomBarVisible && <BottomBar items={BOTTOMBAR_ITEMS}/>}</Stack>
+        </Box>
+    );
 };
 
 export default PublicLayout;
