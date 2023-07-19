@@ -11,7 +11,7 @@ import AlertsSection from '../components/Alerts';
  * Renders Welcome page/view
  * Url: /welcome and /
  */
-const WelcomeView = () => {
+const HomeView = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -53,4 +53,4 @@ const WelcomeView = () => {
   );
 };
 
-export default WelcomeView;
+export default HomeView;
