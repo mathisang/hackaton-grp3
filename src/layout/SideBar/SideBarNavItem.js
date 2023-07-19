@@ -10,7 +10,8 @@ import { PROP_TYPE_LINK_ITEM } from '../utils';
  */
 const SideBarNavItem = ({ openInNewTab, icon, path, selected: propSelected = false, subtitle, title, onClick }) => {
   const location = useLocation();
-  const selected = propSelected || (path && path.length > 1 && location.pathname.startsWith(path)) || false;
+  console.log(location.pathname, path)
+  const selected = propSelected || (path && path.length > 1 && location.pathname.startsWith(path)) || (path === '/' && location.pathname === '/') ||  false;
 
   return (
     <ListItemButton

@@ -10,7 +10,6 @@ export async function loginByAxios({ email, password }) {
     password,
   };
   try {
-    console.log(api.url)
     const res = await api?.axios?.post(ENDPOINT, {
       password,
       identifier: email
@@ -18,10 +17,7 @@ export async function loginByAxios({ email, password }) {
     const { data } = res;
     log.warn(`${METHOD} -`, data);
 
-    console.log(data)
-    saveToken(data?.access_token);
-    saveRefreshToken(data?.refresh_token);
-    setRefreshTimeout(data?.expires);
+    saveToken(data?.jwt);
     log.warn(METHOD, '- token expires in', +data?.expires / 1000 / 60, 'minutes');
 
     return data;

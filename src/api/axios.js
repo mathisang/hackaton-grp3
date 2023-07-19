@@ -16,7 +16,6 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.response.use(
   (res) => res,
   (err) => {
-      console.log(api.url)
     if (Number(err?.response?.status) === 401) {
       // Token expired, or hacked
       api?.auth?.logout(); // Logout user and reload Application

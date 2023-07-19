@@ -22,6 +22,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import BuildIcon from '@mui/icons-material/Build';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import {Help, RequestPage, School} from "@mui/icons-material";
 
 /**
  * How to use:
@@ -56,6 +57,8 @@ const ICONS = {
   smile: InsertEmoticonIcon,
   tools: BuildIcon,
   account: AccountCircle,
+  courses: School,
+  help: Help
 };
 
 /**
