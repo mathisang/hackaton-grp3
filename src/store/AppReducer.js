@@ -16,7 +16,6 @@ const AppReducer = (state, action) => {
       };
     case 'SIGN_UP':
     case 'LOG_IN':
-      console.log('actionnnnn', action)
       return {
         ...state,
         currentUser: action.payload.user,
