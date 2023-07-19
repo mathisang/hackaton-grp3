@@ -10,7 +10,8 @@ const Search = styled('div')(({ theme }) => ({
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.black, 0.12),
   },
-  width: '60%'
+  width: '60%',
+  height: 'fit-content'
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -21,12 +22,12 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRight: '1px solid #D9D9D9'
+  borderRight: '1px solid #D9D9D9',
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: alpha(theme.palette.common.black, 0.33),
-  padding: theme.spacing(1),
+  padding: theme.spacing(2),
   paddingLeft: `calc(1em + ${theme.spacing(6)})`,
   width: '100%',
 }));
@@ -37,14 +38,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
  */
 const SearchBar = ({ variant = APP_SECTION_VARIANT }) => {
   return (
-    <Box>
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon color={'primary'} />
-        </SearchIconWrapper>
-        <StyledInputBase placeholder="Rechercher..." inputProps={{ 'aria-label': 'search' }} />
-      </Search>
-    </Box>
+    <Search>
+      <SearchIconWrapper>
+        <SearchIcon color={'primary'} />
+      </SearchIconWrapper>
+      <StyledInputBase placeholder="Rechercher..." inputProps={{ 'aria-label': 'search' }} />
+    </Search>
   );
 };
 
