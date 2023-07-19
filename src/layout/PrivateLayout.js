@@ -26,12 +26,12 @@ const SIDEBAR_ITEMS = [
     {
         title: 'Cours',
         path: '/courses',
-        icon: 'course'
+        icon: 'courses'
     },
     {
         title: 'Demandes',
         path: '/applications',
-        icon: 'requestQuote',
+        icon: 'help',
     }
 ];
 

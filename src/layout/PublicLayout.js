@@ -15,13 +15,8 @@ const TITLE_PUBLIC = '_TITLE_ app'; // Title for pages without/before authentica
  */
 const SIDEBAR_ITEMS = [
     {
-        title: 'Accueil',
-        path: '/',
-        icon: 'home',
-    },
-    {
         title: 'Connexion',
-        path: '/auth/login',
+        path: '/',
         icon: 'login',
     },
 ];

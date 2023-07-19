@@ -1,11 +1,11 @@
-import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Grid, TextField, Card, CardHeader, CardContent, InputAdornment } from '@mui/material';
-import { useAppStore } from '../../../store';
-import { AppButton, AppIconButton, AppLink } from '../../../components';
-import { AppForm, AppAlert } from '../../../components/forms';
-import { useAppForm, SHARED_CONTROL_PROPS, eventPreventDefault } from '../../../utils/form';
-import { api } from '../../../api';
+import {useCallback, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {Card, CardContent, CardHeader, Grid, InputAdornment, TextField} from '@mui/material';
+import {useAppStore} from '../../../store';
+import {AppButton, AppIconButton} from '../../../components';
+import {AppAlert, AppForm} from '../../../components/forms';
+import {eventPreventDefault, SHARED_CONTROL_PROPS, useAppForm} from '../../../utils/form';
+import {api} from '../../../api';
 
 const VALIDATE_FORM_LOGIN_EMAIL = {
   email: {
@@ -51,7 +51,7 @@ const LoginEmailView = () => {
         return; // Unsuccessful login
       }
 
-      dispatch({ type: 'LOG_IN' });
+      dispatch({ type: 'LOG_IN', payload: result });
       navigate('/', { replace: true });
     },
     [dispatch, values, navigate]
@@ -105,10 +105,7 @@ const LoginEmailView = () => {
           ) : null}
           <Grid container justifyContent="center" alignItems="center">
             <AppButton type="submit" disabled={!formState.isValid}>
-              Login with Email
-            </AppButton>
-            <AppButton variant="text" component={AppLink} to="/auth/recovery/password">
-              Forgot Password
+              Se connecter
             </AppButton>
           </Grid>
         </CardContent>

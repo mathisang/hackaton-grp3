@@ -6,8 +6,10 @@ import {useEventLogout, useIsAuthenticated} from '../../hooks';
 import SideBarNavList from './SideBarNavList';
 import {SIDEBAR_WIDTH} from '../config';
 import {PROP_TYPE_LINK_ITEM} from '../utils';
-import user from '../../assets/user.png';
+import placeholder from '../../assets/placeholder.jpg';
+import devinci from '../../assets/devinci.png';
 import headerImage from '../../assets/header_navbar.svg';
+import {useAppStore} from "../../store";
 
 /**
  * Renders SideBar with Menu and User details
@@ -23,9 +25,12 @@ const SideBar = ({anchor, items, open, variant, onClose, ...restOfProps}) => {
     // todo to implement
     // const [state] = useAppStore();
     // const isAuthenticated = state.isAuthenticated; // Variant 1
+    const [state] = useAppStore();
     const isAuthenticated = useIsAuthenticated(); // Variant 2
     const onLogout = useEventLogout();
 
+    console.log(state?.currentUser)
+    console.log(state)
     const handleAfterLinkClick = useCallback(
         (event) => {
             if (variant === 'temporary' && typeof onClose === 'function') {
@@ -78,23 +83,21 @@ const SideBar = ({anchor, items, open, variant, onClose, ...restOfProps}) => {
                         height: '100%',
                         zIndex: 1,
                     }}>
-                        <Box component="img" src={user} alt="header" sx={{
+                        <Box component="img" src={isAuthenticated ? state?.user?.picture ?? placeholder : devinci} alt="header" sx={{
                             width: '50%',
+                            borderRadius: '50%',
                             zIndex: 2,
                         }}/>
-                        <Box sx={{color: 'white', fontWeight: 'bold', paddingTop: 1}}>@John DOE</Box>
+                        <Box sx={{color: 'white', fontWeight: 'bold', paddingTop: 1}}>{isAuthenticated ? `@${state?.currentUser?.username}` :  'Bienvenue !'}</Box>
                     </Box>
                 </Stack>
-                {/*{isAuthenticated && (*/}
-                {/*  <>*/}
-                {/*    <UserInfo showAvatar />*/}
-                {/*    <Divider />*/}
-                {/*  </>*/}
-                {/*)}*/}
-
                 <SideBarNavList items={items} showIcons/>
 
-                {isAuthenticated && <AppIconButton icon="logout" title="Déconnexion" onClick={onLogout}/>}
+                {isAuthenticated &&
+                    <Box sx={{justifyContent:"center", display: 'flex'}}>
+                        <AppIconButton icon="logout" title="Déconnexion" onClick={onLogout}/>
+                    </Box>
+                }
 
             </Stack>
         </Drawer>
