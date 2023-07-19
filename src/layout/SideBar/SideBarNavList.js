@@ -12,7 +12,10 @@ import { PROP_TYPE_LINK_ITEM } from '../utils';
  */
 const SideBarNavList = ({ items, showIcons, onClick, ...restOfProps }) => {
   return (
-    <List component="nav" {...restOfProps}>
+    <List component="nav" {...restOfProps} sx={{
+      paddingLeft: 4
+    }}
+    >
       {items.map(({ icon, path, title }) => (
         <SideBarNavItem
           key={`${title}-${path}`}

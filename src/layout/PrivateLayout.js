@@ -35,11 +35,6 @@ const SIDEBAR_ITEMS = [
     path: '/about',
     icon: 'info',
   },
-  // {
-  //   title: 'Dev Tools',
-  //   path: '/dev',
-  //   icon: 'settings',
-  // },
 ];
 
 /**
@@ -95,11 +90,6 @@ const PrivateLayout = ({ children }) => {
       }}
     >
       <Stack component="header">
-        <TopBar
-          startNode={<AppIconButton icon="logo" onClick={sidebarOpen ? onLogoClick : onSideBarOpen} />}
-          title={title}
-        />
-
         <SideBar
           anchor={onMobile ? SIDEBAR_MOBILE_ANCHOR : SIDEBAR_DESKTOP_ANCHOR}
           open={sidebarOpen}
