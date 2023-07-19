@@ -1,23 +1,30 @@
-import { Box, Typography, Stack, Select, MenuItem, FormControl } from "@mui/material";
+import { Box, Typography, Select, MenuItem, FormControl } from "@mui/material";
 import CardCourseList from "../../components/CardCourseList";
 import TitleSection from "../../components/TitleSection/TitleSection";
-import Header from "../../components/Header";
 import { useEffect, useState } from 'react';
-import api from "../../api";
+import { getCategories } from "../../api/categories";
+import { getCourses } from "../../api/courses";
+import Header from "../../components/Header";
 
-const courses = [
-    { title: 'Violon' },
-    { title: 'Flutte' },
-    { title: 'Guitare' },
-    { title: 'Piano' }
-];
+const SearchCourse = ({ setCategory }) => {
+    const [categories, setCategories] = useState([]);
+    useEffect(() => {
+        getCategories().then((response) => {
+            setCategories(response.data);
+        });
+    }, []);
 
-const SearchCourse = () => {
+    const [value, setValue] = useState('');
+    const handleChange = (event) => {
+        setValue(event.target.value);
+        setCategory(event.target.value);
+    };
+
     return (
         <Box sx={{
-            width: 300, 
-            display: 'flex', 
-            flexDirection: 'row', 
+            width: 300,
+            display: 'flex',
+            flexDirection: 'row',
             boxShadow: '3px 4px 6px 0px #00000012',
             backgroundColor: '#fff',
             borderRadius: '20px',
@@ -29,14 +36,15 @@ const SearchCourse = () => {
             <Typography>Trier par :</Typography>
             <FormControl sx={{width: '60%'}} size="small">
                 <Select
-                    label="Age"
+                    onChange={(event) => {handleChange(event)}}
+                    value={value}
                     >
-                    <MenuItem value="">
+                    <MenuItem value={undefined}>
                         <em>Aucun</em>
                     </MenuItem>
                     {
-                        courses.map((course, index) => {
-                            return <MenuItem key={index} value={course.title}>{course.title}</MenuItem>
+                        categories && categories.length > 0 && categories.map((category, index) => {
+                            return <MenuItem key={index} value={category.id}>{category.attributes.name}</MenuItem>
                         })
                     }
                 </Select>
@@ -47,44 +55,37 @@ const SearchCourse = () => {
 
 
 const ListCourses = () => {
-    const listOfCourses = [
-        {
-            title: 'Titre du cours',
-            description: 'Description du cours',
-            auteur: 'Nicolas Brazzolotto'
-        },
-        {
-            title: 'Titre du cours',
-            description: 'Description du cours',
-            auteur: 'Nicolas Brazzolotto'
-        },
-        {
-            title: 'Titre du cours',
-            description: 'Description du cours',
-            auteur: 'Nicolas Brazzolotto'
-        },
-        {
-            title: 'Titre du cours',
-            description: 'Description du cours',
-            auteur: 'Nicolas Brazzolotto'
-        },
-        {
-            title: 'Titre du cours',
-            description: 'Description du cours',
-            auteur: 'Nicolas Brazzolotto'
-        },
-        {
-            title: 'Titre du cours',
-            description: 'Description du cours',
-            auteur: 'Nicolas Brazzolotto'
-        },
-    ];
+    const [category, setCategory] = useState(undefined);
 
-    const [categories, setCategories] = useState([]);
+    const [courses, setCourses] = useState([]);
     useEffect(() => {
-        api.axios.get('/categories').then((response) => {
-            setCategories(response)});
-    }, []);
+        console.log(category);
+        getCourses({
+            populate: 'ownerId',
+            filters: !category ? undefined : {
+                category: {
+                    id: {
+                        $eq: category
+                    }
+                }
+            }
+        }).then((response) => {
+            setCourses(response.data);
+        });
+    }, [category]);
+
+
+    const coursesList = (courses) => {
+        if (courses.length === 0) {
+            return <Typography>Aucun cours disponible</Typography>;
+        }
+
+        return (
+            courses.map((course, index) => {
+                return <CardCourseList key={index} title={course.attributes.name} description={course.attributes.description} autor={course.attributes.ownerId.data.attributes.username}/>
+            })
+        );
+    }
 
     return (
         <Box sx={{
@@ -98,17 +99,13 @@ const ListCourses = () => {
             <Box sx={{paddingLeft: '50px'}}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', marginBottom: '30px' }}>
                     <TitleSection title="Liste des cours"/>
-                    <SearchCourse />
+                    <SearchCourse setCategory={(valeur) => {console.log(valeur); setCategory(valeur)}}/>
                 </Box>
 
                 <div style={{paddingBottom: '200px'}}
                 >
                     <Box sx={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
-                        {
-                            listOfCourses.map((course, index) => {
-                                return <CardCourseList key={index} title={course.title} description={course.description} autor={course.auteur}/>
-                            })
-                        }
+                        {coursesList(courses)}
                     </Box>
                 </div>
             </Box>
