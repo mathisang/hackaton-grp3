@@ -59,9 +59,7 @@ const ListCourses = () => {
 
     const [courses, setCourses] = useState([]);
     useEffect(() => {
-        console.log(category);
         getCourses({
-            populate: 'ownerId',
             filters: !category ? undefined : {
                 category: {
                     id: {
@@ -69,8 +67,8 @@ const ListCourses = () => {
                     }
                 }
             }
-        }).then((response) => {
-            setCourses(response.data);
+        }).then((data) => {
+            setCourses(data);
         });
     }, [category]);
 
@@ -99,7 +97,7 @@ const ListCourses = () => {
             <Box sx={{paddingLeft: '50px'}}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', marginBottom: '30px' }}>
                     <TitleSection title="Liste des cours"/>
-                    <SearchCourse setCategory={(valeur) => {console.log(valeur); setCategory(valeur)}}/>
+                    <SearchCourse setCategory={(valeur) => setCategory(valeur)}/>
                 </Box>
 
                 <div style={{paddingBottom: '200px'}}

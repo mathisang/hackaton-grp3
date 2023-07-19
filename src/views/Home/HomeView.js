@@ -3,11 +3,24 @@ import { SubjectCard } from '../../components/SubjectCard';
 import { CardCourse } from '../../components/CardCourse';
 import { TitleSection } from '../../components/TitleSection';
 import { Header } from '../../components/Header';
-
+import {useEffect, useState} from "react";
+import {getCourses} from "../../api/courses";
 /**
  * Renders Home page/view
  */
 const HomeView = () => {
+    const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        getCourses({
+                pagination: {
+                    pageSize: 5
+                }
+            }
+            )
+            .then(data => setCourses(data ?? []))
+    }, [])
+
   return (
     <Stack direction='column' spacing={6} sx={{width: '100%', overflow: 'hidden', padding: '32px 0 32px 32px'}}>
       <Header />
@@ -25,10 +38,8 @@ const HomeView = () => {
       <Box>
         <TitleSection title={'Top cours'} />
         <Stack direction="column" spacing={2} sx={{paddingRight: '32px'}}>
-          <CardCourse />
-          <CardCourse />
-          <CardCourse />
-        </Stack>  
+            {courses.map(course => <CardCourse course={course} />)}
+        </Stack>
       </Box>
     </Stack>
   );
