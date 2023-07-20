@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
  * Renders Application styled "Section" using Material UI Paper and Title components
  * @component SubjectCard
  */
-const SubjectCard = ({ variant = APP_SECTION_VARIANT, name = 'Missing name...', id = '0' }) => {
+const SubjectCard = ({ variant = APP_SECTION_VARIANT, name = 'Missing name...', id = '0', likes = 0}) => {
   return (
     <Card sx={{ minWidth: '30%', boxShadow: ' 5px 5px 4px 0px #0000000D' }}>
       <CardMedia sx={{ height: 150 }} image="/assets/images/subjects/subject1.jpg" title="Subject" />
@@ -38,8 +38,11 @@ const SubjectCard = ({ variant = APP_SECTION_VARIANT, name = 'Missing name...', 
         <Button size="small">
           <BookmarkIcon />
         </Button>
-        <Button size="small">
-          <ThumbUpOffAltIcon color={'info'} />
+        <Button color={'info'} variant="text" size="small">
+          <ThumbUpOffAltIcon sx={{marginRight: '5px'}} />
+          <Typography sx={{fontWeight: 'light', fontSize: 14}}>
+              {likes}
+          </Typography>
         </Button>
       </CardActions>
     </Card>
