@@ -11,9 +11,12 @@ const DateHeader = ({ variant = APP_SECTION_VARIANT }) => {
 
   const [today, setToday] = useState(new Date())
 
-  // useEffect(() => {
-  //   setToday(new Date())
-  // }, [today]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setToday(new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Stack direction="row" alignItems="center" spacing={2} sx={{color: 'white', background: '#FF3366', width: 'fit-content', padding: '16px 32px', borderRadius: '16px' }}>
