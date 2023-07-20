@@ -37,7 +37,7 @@ const CardCourse = ({course}) => {
                         <Box sx={{display: 'flex', flexDirection: 'row', gap: '10px', alignItems: 'center'}}>
                             <Box component={"img"} src={ownerPicture}
                                  sx={{width: '35px', height: '35px', borderRadius: '50%'}}/>
-                            <Typography sx={{fontWeight: 'light', fontSize: 13, marginTop: '10px'}}>
+                            <Typography sx={{fontWeight: 'light', fontSize: 13, marginTop: '10px'}} onClick={() => navigate(`/user/${ownerId?.data?.id}`)}>
                                 {ownerId?.data?.attributes?.username}
                             </Typography>
                         </Box>

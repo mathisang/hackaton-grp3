@@ -1,5 +1,5 @@
 import {Route, Routes} from 'react-router-dom';
-import {CategoryView, HomeView, NotFoundView} from '../views';
+import {CategoryView, HomeView, NotFoundView, UserView} from '../views';
 import ListCourses from "../views/Course/ListCourses";
 
 /**
@@ -12,6 +12,7 @@ const PrivateRoutes = () => {
             <Route path="/" element={<HomeView/>}/>
             <Route path="/category/*" element={<CategoryView/>}/>
             <Route path="/courses" element={<ListCourses />} />
+            <Route path="/user/*" element={<UserView />} />
             <Route path="*" element={<NotFoundView/>}/>
         </Routes>
     );
