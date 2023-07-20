@@ -26,7 +26,7 @@ const ListCategoriesView = () => {
         <Stack direction={'row'} flexWrap={'wrap'} gap={2}>
           {categories && categories.map((categorie, index) => {
             return (
-              <SubjectCard key={index} id={categorie.id} name={categorie.attributes.name} />
+              <SubjectCard key={index} id={categorie.id} name={categorie.attributes.name} category={categorie}/>
             );
           })}
         </Stack>

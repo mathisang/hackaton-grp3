@@ -27,12 +27,12 @@ const HomeView = () => {
     getCategories().then(({data}) => setCategories(data ?? []));
   }, []);
 
-  
+
   const listOfCategories = (categories) => {
     if (categories.length === 0) {
       return <Typography>Il n'y a aucun sujet pour le moment.</Typography>;
     }
-    return categories.map(category => <SubjectCard id={category.id} name={category.attributes.name} likes={category.attributes.likes}/>);
+    return categories.map(category => <SubjectCard id={category.id} name={category.attributes.name} likes={category.attributes.likes} category={category}/>);
   }
 
   return (
