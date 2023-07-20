@@ -51,7 +51,7 @@ const PrivateLayout = ({children}) => {
     // const sidebarOpen = sideBarVisible;
     // const sidebarVariant = 'temporary';
 
-    const title = TITLE_PRIVATE;
+    const title = 'AlumniLink';
     document.title = title; // Also Update Tab Title
 
     const onSideBarClose = () => {
