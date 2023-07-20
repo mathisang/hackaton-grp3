@@ -3,6 +3,7 @@ import { Header } from '../../components/Header';
 import { useParams } from 'react-router-dom';
 import { SubjectCard } from '../../components/SubjectCard';
 import { useEffect, useState } from 'react';
+import { TitleSection } from '../../components/TitleSection';
 import api from '../../api';
 
 /**
