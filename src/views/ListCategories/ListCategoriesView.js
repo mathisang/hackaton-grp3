@@ -17,10 +17,6 @@ const ListCategoriesView = () => {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(categories);
-  }, [categories]);
-
   return (
     <Stack direction="column" spacing={6} sx={{ width: '100%', overflow: 'hidden', padding: '32px 0 32px 32px' }}>
       <Header />
