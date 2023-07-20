@@ -29,8 +29,6 @@ const SideBar = ({anchor, items, open, variant, onClose, ...restOfProps}) => {
     const isAuthenticated = useIsAuthenticated(); // Variant 2
     const onLogout = useEventLogout();
 
-    console.log(state?.currentUser)
-    console.log(state)
     const handleAfterLinkClick = useCallback(
         (event) => {
             if (variant === 'temporary' && typeof onClose === 'function') {
@@ -83,11 +81,25 @@ const SideBar = ({anchor, items, open, variant, onClose, ...restOfProps}) => {
                         height: '100%',
                         zIndex: 1,
                     }}>
-                        <Box component="img" src={isAuthenticated ? state?.user?.picture ?? placeholder : devinci} alt="header" sx={{
-                            width: '50%',
-                            borderRadius: '50%',
-                            zIndex: 2,
-                        }}/>
+                        <Box sx={{position: 'relative', display: 'flex', justifyContent: 'center'}}>
+                            {isAuthenticated && (
+                                <Box sx={{
+                                    background: 'white',
+                                    borderRadius: '50%',
+                                    position: 'absolute',
+                                    right: 0,
+                                    top: 0,
+                                    transform: 'translateX(-20%)',
+                                    padding: 1,
+                                    zIndex: 2
+                                }}>100</Box>
+                            )}
+                            <Box component="img" src={isAuthenticated ? state?.user?.picture ?? placeholder : devinci} alt="header" sx={{
+                                width: '50%',
+                                borderRadius: '50%',
+                                zIndex: 2,
+                            }}/>
+                        </Box>
                         <Box sx={{color: 'white', fontWeight: 'bold', paddingTop: 1}}>{isAuthenticated ? `@${state?.currentUser?.username}` :  'Bienvenue !'}</Box>
                     </Box>
                 </Stack>
