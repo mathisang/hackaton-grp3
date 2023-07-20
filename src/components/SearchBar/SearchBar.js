@@ -110,7 +110,7 @@ const SearchBar = ({variant = APP_SECTION_VARIANT}) => {
                 <SearchIconWrapper>
                     <SearchIcon color={'primary'}/>
                 </SearchIconWrapper>
-                <StyledInputBase placeholder="Rechercher..." inputProps={{'aria-label': 'search'}}
+                <StyledInputBase placeholder="Rechercher un cours..." inputProps={{'aria-label': 'search'}}
                                  onChange={({target}) => debouncedSearch(target.value)}/>
             </Search>
             {results.length > 0 && (
