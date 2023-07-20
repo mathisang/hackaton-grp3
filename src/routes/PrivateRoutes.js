@@ -12,7 +12,7 @@ const PrivateRoutes = () => {
             <Route path="/" element={<HomeView/>}/>
             <Route path="/category/*" element={<CategoryView/>}/>
             <Route path="/courses" element={<ListCourses />} />
-            <Route path="/user/*" element={<UserView />} />
+            <Route path="/user/:id*" element={<UserView />} />
             <Route path="*" element={<NotFoundView/>}/>
         </Routes>
     );
