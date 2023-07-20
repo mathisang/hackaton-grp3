@@ -2,6 +2,7 @@ import {Route, Routes} from 'react-router-dom';
 import {HomeView, NotFoundView, ListCategoriesView} from '../views';
 import ListCourses from "../views/Course/ListCourses";
 import Course from '../views/Course/Course';
+import ApplicationsView from "../views/Applications";
 
 /**
  * List of routes available only for authenticated users
@@ -15,6 +16,7 @@ const PrivateRoutes = () => {
             <Route path="/courses/:id" element={<Course />} />
             <Route path=":id/courses" element={<ListCourses />} />
             <Route path="/courses" element={<ListCourses />} />
+            <Route path="/applications" element={<ApplicationsView />} />
             <Route path="*" element={<NotFoundView/>}/>
         </Routes>
     );
