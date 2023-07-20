@@ -1,10 +1,10 @@
 import { Box, Typography, Select, MenuItem, FormControl } from "@mui/material";
-import CardCourseList from "../../components/CardCourseList";
 import TitleSection from "../../components/TitleSection/TitleSection";
 import { useEffect, useState } from 'react';
 import { getCategories } from "../../api/categories";
 import { getCourses } from "../../api/courses";
 import Header from "../../components/Header";
+import CardCourse from "../../components/CardCourse";
 
 const SearchCourse = ({ setCategory }) => {
     const [categories, setCategories] = useState([]);
@@ -80,7 +80,7 @@ const ListCourses = () => {
 
         return (
             courses.map((course, index) => {
-                return <CardCourseList key={index} title={course.attributes.name} description={course.attributes.description} autor={course.attributes.ownerId.data.attributes.username}/>
+                return <CardCourse key={index} course={course}/>
             })
         );
     }
