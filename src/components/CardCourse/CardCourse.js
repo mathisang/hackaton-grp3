@@ -1,4 +1,4 @@
-import {Box, Button, Card, CardContent, CardMedia, Typography} from "@mui/material";
+import {Box, Button, Card, CardActions, CardContent, CardMedia, Typography} from "@mui/material";
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import placeholder from '../../assets/placeholder.jpg';
@@ -18,7 +18,7 @@ const CardCourse = ({course}) => {
     const navigate = useNavigate();
 
     return <Card sx={{display: 'flex', borderRadius: '11px', boxShadow: '3px 4px 6px 0px #00000012'}}>
-        <Box sx={{display: 'flex', flexDirection: 'column', padding: '15px'}}>
+        <Box sx={{display: 'flex', flexDirection: 'column', padding: '15px', width: '100%'}}>
             <Box sx={{display: 'flex', flexDirection: 'row'}}>
                 <CardMedia
                     component="img"
@@ -27,7 +27,7 @@ const CardCourse = ({course}) => {
                     alt="Image de cours"
                 />
                 <CardContent>
-                    <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                    <Box sx={{display: 'flex', flexDirection: 'column', gap: 1}}>
                         <Typography sx={{fontWeight: 'medium', fontSize: 18, marginBottom: '5px'}}>
                             {name}
                         </Typography>
@@ -44,7 +44,7 @@ const CardCourse = ({course}) => {
                     </Box>
                 </CardContent>
             </Box>
-            <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <CardActions id={"test"} sx={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
                 <Box sx={{display: 'flex', flexDirection: 'row', gap: '10px'}}>
                     <Button color={'info'} variant="text">
                         <ThumbUpOffAltIcon sx={{marginRight: '5px'}}/>
@@ -62,7 +62,7 @@ const CardCourse = ({course}) => {
                 <AppButton variant="outlined" onClick={() => navigate(`/courses/${course.id}`)}>
                     Voir le cours
                 </AppButton>
-            </Box>
+            </CardActions>
         </Box>
     </Card>
 }
