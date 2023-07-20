@@ -44,7 +44,7 @@ const UserView = () => {
     return (
         <Box container spacing={4} justifyContent="center">
             <Card sx={{
-                display: 'flex', width: '45vw', borderRadius: '24px', position: 'relative', margin: 'auto', marginBottom: '20px',
+                display: 'flex', width: '45vw', borderRadius: '24px', position: 'relative', margin: 'auto', marginBottom: '20px', maxHeight: '250px',
                 [theme.breakpoints.down('lg')]: {
                     width: '100%',
                 }
