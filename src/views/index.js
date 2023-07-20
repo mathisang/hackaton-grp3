@@ -13,10 +13,8 @@ const HomeView = withSuspense(React.lazy(() => import('./Home')));
 
 const UserView = withSuspense(React.lazy(() => import('./User')));
 
-const CategoryView = withSuspense(React.lazy(() => import('./Category')));
-
 const ListCategoriesView = withSuspense(React.lazy(() => import('./ListCategories')));
 
 // const CategoryView = () => <NotImplementedView name="Category" />; // Sample of non-implemented View
 
-export { NotFoundView, HomeView, UserView, CategoryView, ListCategoriesView };
+export { NotFoundView, HomeView, UserView, ListCategoriesView };

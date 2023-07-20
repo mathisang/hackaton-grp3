@@ -28,7 +28,7 @@ const SubjectCard = ({ variant = APP_SECTION_VARIANT, name = 'Missing name...', 
         >
           <Avatar alt="Remy Sharp" src="/assets/images/avatar/1.png" sx={{ width: 24, height: 24 }} />
         </Box>
-        <Link to={`/category/${id}`} underline="none" style={{ textDecoration: 'none', color: 'unset' }}>
+        <Link to={`/${id}/courses`} underline="none" style={{ textDecoration: 'none', color: 'unset' }}>
           <Typography gutterBottom variant="h5" component="div">
             {name}
           </Typography>
