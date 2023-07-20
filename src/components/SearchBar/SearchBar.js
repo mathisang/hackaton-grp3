@@ -125,7 +125,7 @@ const SearchBar = ({variant = APP_SECTION_VARIANT}) => {
                                     padding: 1,
                                     cursor: 'pointer'
                                 }}>
-                                    #{result.attributes.category.data[0].attributes.name} - {result.attributes.name}
+                                    #{result.attributes.category.data.attributes.name} - {result.attributes.name}
                                 </Box>
                             )
                         })}
@@ -135,5 +135,4 @@ const SearchBar = ({variant = APP_SECTION_VARIANT}) => {
         </SearchWrapper>
     );
 };
-
 export default SearchBar;

@@ -1,6 +1,7 @@
 import {Route, Routes} from 'react-router-dom';
-import {CategoryView, HomeView, NotFoundView} from '../views';
+import {HomeView, NotFoundView, ListCategoriesView} from '../views';
 import ListCourses from "../views/Course/ListCourses";
+import Course from '../views/Course/Course';
 import ApplicationsView from "../views/Applications";
 
 /**
@@ -11,7 +12,9 @@ const PrivateRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<HomeView/>}/>
-            <Route path="/category/*" element={<CategoryView/>}/>
+            <Route path="/categories" element={<ListCategoriesView/>}/>
+            <Route path="/courses/:id" element={<Course />} />
+            <Route path=":id/courses" element={<ListCourses />} />
             <Route path="/courses" element={<ListCourses />} />
             <Route path="/applications" element={<ApplicationsView />} />
             <Route path="*" element={<NotFoundView/>}/>
