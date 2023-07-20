@@ -24,13 +24,16 @@ const ListCategoriesView = () => {
     <Stack direction="column" spacing={6} sx={{ width: '100%', overflow: 'hidden', padding: '32px 0 32px 32px' }}>
       <Header />
 
-      <Stack direction={'row'} flexWrap={'wrap'} gap={2}>
-        {categories && categories.map((categorie, index) => {
-          return (
-            <SubjectCard key={index} id={categorie.id} name={categorie.attributes.name} />
-          );
-        })}
-      </Stack>
+      <Box>
+        <TitleSection title={'Catégories'} />
+        <Stack direction={'row'} flexWrap={'wrap'} gap={2}>
+          {categories && categories.map((categorie, index) => {
+            return (
+              <SubjectCard key={index} id={categorie.id} name={categorie.attributes.name} />
+            );
+          })}
+        </Stack>
+      </Box>
     </Stack>
   );
 };
