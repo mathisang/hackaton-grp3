@@ -12,7 +12,7 @@ import {getCategories} from "../../api/categories";
  */
 const HomeView = () => {
   const [courses, setCourses] = useState([]);
-  const [catgories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
       getCourses({
@@ -32,7 +32,7 @@ const HomeView = () => {
     if (categories.length === 0) {
       return <Typography>Il n'y a aucun sujet pour le moment.</Typography>;
     }
-    return categories.map(category => <SubjectCard title={category.attributes.name} likes={category.attributes.likes}/>);
+    return categories.map(category => <SubjectCard id={category.id} name={category.attributes.name} likes={category.attributes.likes}/>);
   }
 
   return (
@@ -43,7 +43,7 @@ const HomeView = () => {
           <TitleSection title={'Sujets'} arrow={true} />
         </Link>
         <Stack direction="row" spacing={4} sx={{overflow: 'auto'}}>
-          {listOfCategories(catgories)}
+          {listOfCategories(categories)}
         </Stack>
       </Box>
 

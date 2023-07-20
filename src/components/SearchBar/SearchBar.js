@@ -117,7 +117,6 @@ const SearchBar = ({variant = APP_SECTION_VARIANT}) => {
                 <SearchResultsWrapper>
                     <Box sx={{padding: '16px'}}>
                         {results.map((result) => {
-                            console.log(result);
                             return (
                                 <Box onClick={() => navigate(`/courses/${result.id}`)} sx={{
                                     color: 'black',
